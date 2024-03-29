@@ -1,0 +1,6 @@
+**/*
+!/dist/**
+!/lib/**
+!/assets/**
+!LICENSE
+!README.md
