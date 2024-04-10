@@ -5,21 +5,8 @@ import terser from '@rollup/plugin-terser';
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
-const getVersionFromTag = () => {
-    const tagRef = process.env.GITHUB_REF;
-    if (tagRef && tagRef.startsWith('refs/tags/')) {
-        return tagRef.slice('refs/tags/'.length);
-    }
-    return null;
-};
-
-const tagVersion = getVersionFromTag();
-
-const version = tagVersion || packageJson.version;
-
-
 const year = new Date().getFullYear();
-const banner = `//${packageJson.name}  v${version} Copyright (c) ${year} ${packageJson.author}`
+const banner = `//${packageJson.name}  v${packageJson.version} Copyright (c) ${year} ${packageJson.author}`
 const inputSource = packageJson.source;
 const outputFileName = 'bundle';
 const createConfig = ({es5, browser = true, minified = true, ...config }) => {
