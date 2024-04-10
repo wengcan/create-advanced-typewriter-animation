@@ -5,8 +5,21 @@ import terser from '@rollup/plugin-terser';
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
+const getVersionFromTag = () => {
+    const tagRef = process.env.GITHUB_REF;
+    if (tagRef && tagRef.startsWith('refs/tags/')) {
+        return tagRef.slice('refs/tags/'.length);
+    }
+    return null;
+};
+
+const tagVersion = getVersionFromTag();
+
+const version = tagVersion || packageJson.version;
+
+
 const year = new Date().getFullYear();
-const banner = `//${packageJson.name}  v${packageJson.version} Copyright (c) ${year} ${packageJson.author}`
+const banner = `//${packageJson.name}  v${version} Copyright (c) ${year} ${packageJson.author}`
 const inputSource = packageJson.source;
 const outputFileName = 'bundle';
 const createConfig = ({es5, browser = true, minified = true, ...config }) => {
@@ -22,7 +35,13 @@ const createConfig = ({es5, browser = true, minified = true, ...config }) => {
             //     babelHelpers: 'bundled',
             //     presets: ['@babel/preset-env']
             // })] : []),    
-            ...(minified ? [terser()] : []), 
+            ...(minified ? [
+                terser({
+                    format: {
+                        preamble: banner
+                    }
+                })
+            ] : []), 
             ...(config.plugins || []),       
         ]
     }
@@ -40,32 +59,10 @@ export default [
         es5: true,
         minified: true,
         output: {
-          file: `dist/${outputFileName}.js`,
+          file: `dist/umd/${outputFileName}.js`,
           format: "umd",
           exports: "default",
-          name: 'createAdvancedTypingEffect'
+          name: 'createAdvancedTypingAnimation'
         }
-    }),
-    // {
-    //     input: 'lib/index2.ts',
-    //     output: {
-    //         file: 'dist/bundle.js',
-    //         format: "esm",
-    //         preferConst: true,
-    //         exports: "named",
-    //         banner
-    //     },
-    //     plugins
-    // },
-    // {
-    //     input: 'lib/index2.ts',
-    //     output: {
-    //         file: 'dist/bundle.js',
-    //         format: "umd",
-    //         exports: "default",
-    //         banner
-    //     },
-    //     plugins
-    // }
-
+    })
 ];
