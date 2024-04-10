@@ -28,6 +28,10 @@
     "react typewriter effect"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wengcan/create-advanced-typewriter-animation.git"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.js"
   },
