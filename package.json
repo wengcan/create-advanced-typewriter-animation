@@ -1,14 +1,15 @@
 {
   "name": "create-advanced-typewriter-animation",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Leo W",
   "type": "module",
   "main": "index.js",
   "source": "lib/index.ts",
   "jsnext:main": "dist/esm/bundle.js",
-  "umd:main": "dist/umd/bundle.js",
-  "typings": "index.d.ts",
+  "umd:main": "dist/bundle.umd.js",
+  "typings":"./dist/esm/index.d.ts",
   "exports": {
+    "types": "./dist/esm/index.d.ts",
     "module": "./dist/esm/bundle.js",
     "import": "./dist/esm/bundle.js",
     "default": "./dist/esm/bundle.js"
@@ -28,10 +29,6 @@
     "react typewriter effect"
   ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wengcan/create-advanced-typewriter-animation.git"
-  },
   "scripts": {
     "build": "rollup -c rollup.config.js"
   },

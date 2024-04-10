@@ -9,7 +9,13 @@ const year = new Date().getFullYear();
 const banner = `//${packageJson.name}  v${packageJson.version} Copyright (c) ${year} ${packageJson.author}`
 const inputSource = packageJson.source;
 const outputFileName = 'bundle';
-const createConfig = ({es5, browser = true, minified = true, ...config }) => {
+const createConfig = ({
+    es5, 
+    browser = true, 
+    minified = true, 
+    declaration = false,
+    ...config 
+}) => {
     return   {
         input: inputSource,
         output: {
@@ -17,7 +23,9 @@ const createConfig = ({es5, browser = true, minified = true, ...config }) => {
             banner
         },
         plugins: [
-            typescript(),
+            typescript({
+                declaration
+            }),
             // ...(es5 ? [babel({
             //     babelHelpers: 'bundled',
             //     presets: ['@babel/preset-env']
@@ -36,6 +44,7 @@ const createConfig = ({es5, browser = true, minified = true, ...config }) => {
 
 export default [
     createConfig({
+        declaration: true,
         output: {
             file: `dist/esm/${outputFileName}.js`,
             format: "esm",
