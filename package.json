@@ -1,12 +1,12 @@
 {
   "name": "create-advanced-typewriter-animation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Leo W",
   "type": "module",
   "main": "index.js",
   "source": "lib/index.ts",
   "jsnext:main": "dist/esm/bundle.js",
-  "umd:main": "dist/bundle.umd.js",
+  "umd:main": "dist/umd/bundle.js",
   "typings": "index.d.ts",
   "exports": {
     "module": "./dist/esm/bundle.js",
