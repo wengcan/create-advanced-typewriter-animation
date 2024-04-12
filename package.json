@@ -26,9 +26,14 @@
     "steaming effect",
     "infinity typewriter",
     "react typewriter",
-    "react typewriter effect"
+    "react typewriter effect",
+    "AI like response"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wengcan/create-advanced-typewriter-animation.git"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.js"
   },

@@ -131,7 +131,13 @@ class Writing implements ControlsImpl {
         this.moveCurBackward(cur)
         const itemToDelete = cur.nextSibling;
         itemToDelete?.parentNode?.removeChild(itemToDelete)
+        const tempNode = cur.parentNode
+        if( tempNode?.childNodes.length === 1 && tempNode?.childNodes[0] === cur){
+            tempNode.parentNode?.insertBefore(cur, tempNode)
+            tempNode.parentNode?.removeChild(tempNode)
+        }
     }
+
 
     private handleMoveCursor(node: WritingMoveCursor){
         if ( !this.cursorRefs?.show ){
@@ -171,13 +177,12 @@ class Writing implements ControlsImpl {
             _count++
         }, node.delay)
     }
-    private handleDelay(node: WritingDelay){
-
+    private handleDelay(node: WritingDelay){  
+        // TODO delay time is not correct  
         this.globalRefs.interval.load(()=>{
             this.globalRefs.interval.clear()
             this.continueAction(true)
         }, node.delay)
-
     }
     private handleClear(){
         while (this.container.firstChild) {
