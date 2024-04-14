@@ -6,13 +6,15 @@ export function intervalInstance(): IntervalInstance {
     let _elapsed = 0;
     let isActive = false;
     function loop(currentTime: number) {
+       
         const deltaTime = currentTime - _prevTime;
         _prevTime = currentTime;
         _elapsed += deltaTime;
         while (_elapsed >= _interval!) { 
-            _callback && _callback();
             _elapsed -= _interval!;
+            _callback && _callback();
         } 
+
 
         if (isActive) {
             _timerId = requestAnimationFrame(loop);

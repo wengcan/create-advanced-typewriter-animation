@@ -178,7 +178,6 @@ class Writing implements ControlsImpl {
         }, node.delay)
     }
     private handleDelay(node: WritingDelay){  
-        // TODO delay time is not correct  
         this.globalRefs.interval.load(()=>{
             this.globalRefs.interval.clear()
             this.continueAction(true)
