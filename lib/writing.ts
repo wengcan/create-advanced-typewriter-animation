@@ -216,8 +216,6 @@ class Writing implements ControlsImpl {
         }, 600)
     }
 
-
-
     private renderTypewriter(node: WritingTypewriter){
         if(!this.globalRefs.doc){
             const doc = document.createElement("span")
@@ -244,22 +242,24 @@ class Writing implements ControlsImpl {
             }
         }, node.delay)
     }
-
     private renderMask(node: WritingMask){
         let nodes: HTMLElement[] = [];
+        const fragment = new DocumentFragment();
         const maskRoot = document.createElement("span")
         for (let k = 0; k < 3; k++) {
             let doc = document.createElement("span")
-            maskRoot.appendChild(doc)
+            fragment.appendChild(doc)
             nodes.push(doc);
         }
         let textNodes = node.text.map(item=>{
             return document.createTextNode(item)
         })
-        nodes[1].style.background = node.color || "red";
-        nodes[1].style.backgroundClip = "text";
-        nodes[1].style.color = "transparent";
+        const tempNode =  fragment.childNodes[1] as HTMLElement
+        tempNode.style.background = node.color || "red";
+        tempNode.style.backgroundClip = "text";
+        tempNode.style.color = "transparent";
         this.addNewDoc(maskRoot)
+        maskRoot.appendChild(fragment)
         this.hideCursor()
         let start = 0
         let _count = 0
@@ -281,10 +281,8 @@ class Writing implements ControlsImpl {
                     textNodes.slice(arr[k], arr[k+1]).forEach(item=>{
                         nodes[k].appendChild(item)
                     })
-                //   nodes[k].innerHTML =  node.text.slice(arr[k], arr[k+1]).join("") //node.text.substring(arr[k], arr[k+1])
                 }
             }
-            // maskRoot.insertBefore(this.cursorRefs?.cursor, nodes[2])
             _count++
         }, node.delay)
     }

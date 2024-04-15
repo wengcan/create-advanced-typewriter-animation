@@ -52,8 +52,7 @@ createAdvancedTypingAnimation(document.querySelector<HTMLDivElement>('.container
   </writing>
 `)
 createAdvancedTypingAnimation(document.querySelector<HTMLDivElement>('.container4')!, `
-  <writing infinity="true">
-    <cursor />
+  <writing>
     <mask duration='10' mode="0">
     a super powerful typing animation plugin, meticulously crafted using native JavaScript. It creates a captivating typewriter effect, infusing your web projects with a refined touch of sophistication.
     </mask>
@@ -61,10 +60,9 @@ createAdvancedTypingAnimation(document.querySelector<HTMLDivElement>('.container
 `)
 
 createAdvancedTypingAnimation(document.querySelector<HTMLDivElement>('.container5')!, `
-  <writing infinity="true">
-    <cursor />
-    <mask duration='10' color='linear-gradient(to right bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12)' mode="1">
+  <writing>
+    <mask duration='5' color='linear-gradient(to right bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12)' mode="1">
     a super powerful typing animation plugin, meticulously crafted using native JavaScript. It creates a captivating typewriter effect, infusing your web projects with a refined touch of sophistication.
-    </mask>
+    </mask>  
   </writing>
 `)

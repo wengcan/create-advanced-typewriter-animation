@@ -3,6 +3,9 @@
 
 > This JavaScript library offers user-friendly web **text animations**, including typewriter effects, streaming effects and other styles, with a focus on performance. 
 
+[Demo](https://create-advanced-typewriter-animation.vercel.app/) 
+
+
 #### Preview
 
 ![capture](https://github.com/wengcan/create-advanced-typewriter-animation/assets/4007458/fdee2a85-da55-47a1-96cd-7459b835e13c)
