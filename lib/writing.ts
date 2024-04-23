@@ -31,7 +31,13 @@ class Writing implements ControlsImpl {
             this.globalRefs.nodeCur = 0
             this.handleClear()
         }
-        this.nextAction()
+
+        if (this.globalRefs.nodeCur < this.props.nodes.length){
+            this.props.cb?.(this.globalRefs.nodeCur);
+            this.nextAction()
+        }
+
+
     }
 
     private nextAction(){

@@ -72,4 +72,5 @@ type SupportNode = WritingBase | WritingMask | WritingTypewriter |  WritingMoveC
 type WritingProps = {
     infinity: string;
     nodes:  SupportNode[];
+    cb?: (id: number) => void;
 }

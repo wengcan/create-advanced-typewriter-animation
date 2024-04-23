@@ -20,7 +20,7 @@ const createAdvancedTypingAnimation = (function(){
         }
     };
     
-    return function(container: HTMLElement, template: string){
+    return function(container: HTMLElement, template: string, callback?: (index: number) => void ){
         if(container == null || containers.has(container)){
             return
         }
@@ -32,8 +32,13 @@ const createAdvancedTypingAnimation = (function(){
             containers.add(container)
             const nodeName = rootNode.nodeName
             if (nodeName === "writing"){
-                const props = convertWritingNode(rootNode as Element)
-                const writing = new Writing( container, props)
+                let props: WritingProps | null = convertWritingNode(rootNode as Element);
+                const _props = {
+                    ...props!,
+                    cb: callback
+                }
+                props = null
+                const writing = new Writing( container, _props)
                 globalControls.effectObjs.push(writing)
             }
         } else {
