@@ -14,7 +14,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 createAdvancedTypingAnimation(
   document.querySelector<HTMLDivElement>('.container')!, 
   `<writing infinity="true">
-      <cursor />
+      <cursor shape="_" className="" />
       <typewriter speed='8' mode="0">
         简单灵活的打字动画插件，原生
       </typewriter >    

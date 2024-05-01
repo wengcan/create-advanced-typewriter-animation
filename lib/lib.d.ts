@@ -40,6 +40,11 @@ interface WritingBase{
     tagName: string;
 }
 
+interface WritingCursor extends WritingBase {
+    shape: string;
+    className: string;
+}
+
 interface WritingDelay extends WritingBase {
     delay: number;
 }
@@ -68,7 +73,7 @@ interface WritingTypewriter extends WritingBase {
     text: string[];
 }
 type WritingMask =  WritingTypewriter & {color: string}
-type SupportNode = WritingBase | WritingMask | WritingTypewriter |  WritingMoveCursor | WritingDelete | WritingDelay;
+type SupportNode = WritingBase |  WritingCursor | WritingMask | WritingTypewriter |  WritingMoveCursor | WritingDelete | WritingDelay;
 type WritingProps = {
     infinity: string;
     nodes:  SupportNode[];

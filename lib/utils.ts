@@ -44,17 +44,29 @@ const convertWritingNode = (node: Element): WritingProps  =>  {
         }
         const attrs = getAttributes<{
             className: string;
+            shape: string;
             mode: string;
             duration: string;
             speed: string;
             count: string;
             color: string;
-        }>(current, ["className", "duration", "speed","mode","count", "color"])
+        }>(current, ["className","shape", "duration", "speed","mode","count", "color"])
         const tagName = current.tagName
         const _speed = parseInt(attrs.speed)
         const _duration = parseFloat(attrs.duration)
         // base nodes
-        if ( ["hideCursor", "cursor", "clear"].indexOf(tagName) >=0 ){
+
+        if (tagName === "cursor") {
+            const node: WritingCursor = {
+                tagName,
+                shape: attrs.shape,
+                className: attrs.className
+            }
+            nodes.push(node)
+            continue;
+        }
+
+        if ( ["hideCursor", "clear"].indexOf(tagName) >=0 ){
             const node: WritingBase = {tagName}
             nodes.push(node)
             continue

@@ -44,7 +44,7 @@ class Writing implements ControlsImpl {
         const current = this.props.nodes[this.globalRefs.nodeCur]
         switch(current.tagName){
             case 'cursor':
-                this.showCursor()
+                this.showCursor(current as WritingCursor)
                 this.continueAction(true)
                 break
             case 'hideCursor':
@@ -206,11 +206,11 @@ class Writing implements ControlsImpl {
         }
         this.cursorRefs.show = false
     }
-    private showCursor(){
+    private showCursor(node?: WritingCursor){
         if( !this.cursorRefs?.cursor ){
             const cursor = document.createElement("span")
-            cursor.innerHTML = "|"
-            cursor.className = "_a_cursor"
+            cursor.innerHTML = node?.shape || "|"
+            cursor.className = node?.className || ''
             this.cursorRefs.cursor = cursor
         }
         this.cursorRefs.cursor.style.display = ""
