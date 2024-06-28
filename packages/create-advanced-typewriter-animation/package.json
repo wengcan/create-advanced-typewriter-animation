@@ -1,0 +1,48 @@
+{
+  "name": "create-advanced-typewriter-animation",
+  "version": "0.1.4",
+  "author": "Leo W",
+  "type": "module",
+  "main": "dist/index.js",
+  "source": "lib/index.ts",
+  "jsnext:main": "dist/esm/index.js",
+  "umd:main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "type effect",
+    "text effects",
+    "steaming",
+    "animated",
+    "typing",
+    "typing effect",
+    "typewriter",
+    "typewriter effect",
+    "steaming effect",
+    "infinity typewriter",
+    "react typewriter",
+    "react typewriter effect",
+    "AI like response",
+    "text highlighter"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wengcan/create-advanced-typewriter-animation.git"
+  },
+  "scripts": {
+    "lib:build": "tsup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tsup": "^8.1.0"
+  }
+}

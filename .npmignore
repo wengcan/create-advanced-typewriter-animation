@@ -1,6 +1,0 @@
-**/*
-!/dist/umd/bundle.js
-!/dist/esm/bundle.js
-!/dist/esm/index.d.ts
-!LICENSE
-!README.md
