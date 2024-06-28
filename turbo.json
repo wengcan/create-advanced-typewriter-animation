@@ -1,0 +1,34 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+      "build": {
+        "dependsOn": ["^build"],
+        "inputs": ["$TURBO_DEFAULT$", ".env*"],
+        "outputs": [".next/**", "!.next/cache/**"]
+      },
+      "lint": {
+        "dependsOn": ["^lint"]
+      },
+      "dev": {
+        "cache": false,
+        "persistent": true
+      }
+    },
+    "entries": {
+      "index": "./packages/my-library/src/index.ts"
+    },
+    "plugins": [
+      "@turbo/pack-plugin-typescript",
+      "@turbo/pack-plugin-terser"
+    ],
+    "output": {
+      "path": "./packages/my-library/dist",
+      "formats": ["esm", "umd"],
+      "fileNames": {
+        "esm": "esm/bundle.js",
+        "umd": "umd/bundle.js"
+      },
+      "banner": "//${name}  v${version} Copyright (c) ${year} ${author}"
+    }
+  }
+  

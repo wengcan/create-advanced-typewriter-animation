@@ -27,8 +27,8 @@ const createAdvancedTypingAnimation = (function(){
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(template, "application/xml");
         const errorNode = xmlDoc.querySelector("parsererror");
-        if (!errorNode && xmlDoc.childNodes[0].nodeType === 1) {
-            const rootNode = xmlDoc.childNodes[0]
+        if (!errorNode && xmlDoc.childNodes.length > 0 && xmlDoc.childNodes[0]!.nodeType === 1) {
+            const rootNode = xmlDoc.childNodes[0] as ChildNode
             containers.add(container)
             const nodeName = rootNode.nodeName
             if (nodeName === "writing"){

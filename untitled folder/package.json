@@ -1,0 +1,50 @@
+{
+  "name": "create-advanced-typewriter-animation",
+  "version": "0.1.4",
+  "author": "Leo W",
+  "type": "module",
+  "main": "index.js",
+  "source": "lib/index.ts",
+  "jsnext:main": "dist/esm/bundle.js",
+  "umd:main": "dist/bundle.umd.js",
+  "typings":"./dist/esm/index.d.ts",
+  "exports": {
+    "types": "./dist/esm/index.d.ts",
+    "module": "./dist/esm/bundle.js",
+    "import": "./dist/esm/bundle.js",
+    "default": "./dist/esm/bundle.js"
+  },
+  "keywords": [
+    "type effect",
+    "text effects",
+    "steaming",
+    "animated",
+    "typing",
+    "typing effect",
+    "typewriter",
+    "typewriter effect",
+    "steaming effect",
+    "infinity typewriter",
+    "react typewriter",
+    "react typewriter effect",
+    "AI like response",
+    "text highlighter"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wengcan/create-advanced-typewriter-animation.git"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.4",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.14.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  }
+}
