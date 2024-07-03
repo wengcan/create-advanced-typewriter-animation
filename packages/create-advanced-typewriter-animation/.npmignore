@@ -1,0 +1,10 @@
+# Ignore everything
+*
+# Except for these files
+!dist/index.js
+!dist/esm/index.js
+!dist/index.d.ts
+!lib/index.ts
+!package.json
+!LICENSE
+!README.md
