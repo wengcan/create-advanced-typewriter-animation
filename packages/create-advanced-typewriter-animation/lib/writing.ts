@@ -42,7 +42,7 @@ class Writing implements ControlsImpl {
 
     private nextAction(){
         const current = this.props.nodes[this.globalRefs.nodeCur]
-        switch(current.tagName){
+        switch(current?.tagName){
             case 'cursor':
                 this.showCursor(current as WritingCursor)
                 this.continueAction(true)
@@ -238,7 +238,7 @@ class Writing implements ControlsImpl {
                 delete this.globalRefs.doc
                 this.continueAction(true)
             } else {
-                const textEle = document.createTextNode(node.text[_count])
+                const textEle = document.createTextNode(node.text[_count]!)
                 this.globalRefs.doc!.appendChild(textEle)
                 this.cursorRefs?.show && this.cursorRefs?.cursor && this.globalRefs.doc!.insertBefore(
                     this.cursorRefs?.cursor, 
@@ -272,10 +272,10 @@ class Writing implements ControlsImpl {
         this.globalRefs.interval.load(()=>{
             if (_count > node.text.length) {
                 this.globalRefs.interval.clear()
-                maskRoot.removeChild(nodes[2])
+                maskRoot.removeChild(nodes[2]!)
                 textNodes = []
-                if (nodes[0].innerText === ""){
-                    maskRoot.removeChild(nodes[0])
+                if (nodes[0]!.innerText === ""){
+                    maskRoot.removeChild(nodes[0]!)
                 }
                 this.showCursor()
                 this.continueAction(true)
@@ -285,7 +285,7 @@ class Writing implements ControlsImpl {
             for (let k = 0; k < 3; k++) {
                 if (nodes[k]) {
                     textNodes.slice(arr[k], arr[k+1]).forEach(item=>{
-                        nodes[k].appendChild(item)
+                        nodes[k]?.appendChild(item)
                     })
                 }
             }

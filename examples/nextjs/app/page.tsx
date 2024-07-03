@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 
 
 export default function Page(): JSX.Element {
-  const [ref] = useAdvancedTypingAnimation(`
+  const [ref] = useAdvancedTypingAnimation<HTMLDivElement>(`
     <writing infinity="true">
         <cursor />
         <typewriter duration="10" mode="0">
