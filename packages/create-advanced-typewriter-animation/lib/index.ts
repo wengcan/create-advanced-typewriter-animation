@@ -2,6 +2,26 @@ import Writing from "./writing"
 import {convertWritingNode} from './utils'
 
 type globalControlsType = GlobalControls<ControlsImpl>
+type TemplateType = string | ReturnType<typeof convertWritingNode>;
+
+export const parseTemplate = (template: string): WritingProps | null  =>{
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(template, "application/xml");
+    const errorNode = xmlDoc.querySelector("parsererror");
+    
+    if (!errorNode && xmlDoc.childNodes.length > 0 && xmlDoc.childNodes[0].nodeType === 1) {
+        const rootNode = xmlDoc.childNodes[0] as Element;
+        const nodeName = rootNode.nodeName;
+        
+        if (nodeName === "writing") {
+            return convertWritingNode(rootNode) as WritingProps;
+        }
+    }
+    
+    return null;
+}
+
+
 const createAdvancedTypingAnimation = (function(){
     let containers = new Set<HTMLElement>()
     let globalControls: globalControlsType = {
@@ -20,31 +40,28 @@ const createAdvancedTypingAnimation = (function(){
         }
     };
     
-    return function(container: HTMLElement, template: string, callback?: (index: number) => void ){
+    return function(container: HTMLElement, template: TemplateType, callback?: (index: number) => void ){
         if(container == null || containers.has(container)){
             return
         }
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(template, "application/xml");
-        const errorNode = xmlDoc.querySelector("parsererror");
-        if (!errorNode && xmlDoc.childNodes.length > 0 && xmlDoc.childNodes[0]!.nodeType === 1) {
-            const rootNode = xmlDoc.childNodes[0] as ChildNode
-            containers.add(container)
-            const nodeName = rootNode.nodeName
-            if (nodeName === "writing"){
-                let props: WritingProps | null = convertWritingNode(rootNode as Element);
-                const _props = {
-                    ...props!,
-                    cb: callback
-                }
-                props = null
-                const writing = new Writing( container, _props)
-                globalControls.effectObjs.push(writing)
-            }
+
+        var props = null
+        if (typeof template === 'string' && template !== null) {
+            props = parseTemplate(template)  
         } else {
-            console.error(errorNode)
-            return;
+            props = template as WritingProps
         }
+        if (props !== null) {
+            containers.add(container)
+            const _props = {
+                ...props!,
+                cb: callback
+            }
+            props = null
+            const writing = new Writing( container, _props)
+            globalControls.effectObjs.push(writing)
+        }
+
         let proxyClobalControls = new Proxy(globalControls, controlsProxyHandler);
         return {
             toggleLoop(){
@@ -57,5 +74,6 @@ const createAdvancedTypingAnimation = (function(){
     }
 
 })()
+
 
 export default createAdvancedTypingAnimation

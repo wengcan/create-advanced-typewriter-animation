@@ -1,6 +1,6 @@
 {
   "name": "create-advanced-typewriter-animation",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Leo W",
   "main": "dist/index.js",
   "source": "lib/index.ts",
